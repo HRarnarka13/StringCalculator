@@ -3,6 +3,9 @@ package is.ru.StringCalculator;
 public class StringCalculator {
 	
 	public static int add(String text) {
-		return 0;
+		if(text.isEmpty()) { return 0; }
+		else {
+			return 1;
+		}
 	}
 }
