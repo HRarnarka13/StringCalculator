@@ -1,0 +1,2 @@
+#!/bin/bash
+javac -cp "classes:lib/junit-4.11.jar" src/test/java/is/ru/StringCalculator/*.java -d classes
