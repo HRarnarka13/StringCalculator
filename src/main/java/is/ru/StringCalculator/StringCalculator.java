@@ -4,6 +4,12 @@ public class StringCalculator {
 	
 	public static int add(String text) {
 		if(text.isEmpty()) { return 0; }
+		else if (text.startsWith("//")) {
+			int indexOfNewLine = text.indexOf("\n");
+			String delimiter = text.substring(2,indexOfNewLine);
+			String numbers = text.substring(indexOfNewLine + 1);
+			return sum(splitStringBy(delimiter,numbers));
+		}
 		else if (text.contains(",") || text.contains("\n")) {
 			return sum(splitString(text));
 		}
@@ -14,6 +20,10 @@ public class StringCalculator {
 
 	private static int toInt(String s){
 		return Integer.parseInt(s);
+	}
+
+	private static String[] splitStringBy(String delimiter, String numbers){
+		return numbers.split(delimiter);
 	}
 
 	private static String[] splitString(String s) {
