@@ -6,9 +6,18 @@ public class StringCalculator {
 		if(text.isEmpty()) { return 0; }
 		else if (text.startsWith("//")) {
 			int indexOfNewLine = text.indexOf("\n");
-			String delimiter = text.substring(2,indexOfNewLine);
-			String numbers = text.substring(indexOfNewLine + 1);
-			return sum(splitStringBy(delimiter,numbers));
+			int indexOfComma = text.indexOf(",");
+			if (indexOfNewLine == -1) {
+				String delimiter = text.substring(2,indexOfComma);
+				String numbers = text.substring(indexOfComma + 1);
+				return sum(splitStringBy(delimiter,numbers));
+			}
+			else {
+				String delimiter = text.substring(2,indexOfNewLine);
+				String numbers = text.substring(indexOfNewLine + 1);
+				return sum(splitStringBy(delimiter,numbers));
+			}
+			
 		}
 		else if (text.contains(",") || text.contains("\n")) {
 			return sum(splitString(text));
