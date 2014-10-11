@@ -25,5 +25,9 @@ public class StringCalculatorTest {
 	public void testMoreNumbersWithCommasAndNewLines() {
 		assertEquals(6, StringCalculator.add("1\n2,3"));
 	}
+	@Test
+	public void testDelimiter() {
+		assertEquals(3, StringCalculator.add("//;\n1;2"));
+	}
 
 }
