@@ -4,7 +4,7 @@ public class StringCalculator {
 	
 	public static int add(String text) {
 		if(text.isEmpty()) { return 0; }
-		else if (text.startsWith("//")) {
+		else if (HasSpecificDelimiter(text)) {
 			int indexOfNewLine = text.indexOf("\n");
 			int indexOfComma = text.indexOf(",");
 			if (indexOfNewLine == -1) {
@@ -19,16 +19,18 @@ public class StringCalculator {
 			}
 			
 		}
-		else if (text.contains(",") || text.contains("\n")) {
+		else if (containsDelimiter(text)) {
 			return sum(splitString(text));
 		}
-		else {
-			return 1;
-		}
+		else { return 1; }
 	}
 
 	private static int toInt(String s){
 		return Integer.parseInt(s);
+	}
+
+	private static Boolean containsDelimiter(String s){
+		return (s.contains(",") || s.contains("\n"));
 	}
 
 	private static String[] splitStringBy(String delimiter, String numbers){
@@ -46,4 +48,8 @@ public class StringCalculator {
 		}
 		return sum;
 	}
+
+	private static Boolean HasSpecificDelimiter(String numbers){
+            return numbers.startsWith("//");
+    }
 }
