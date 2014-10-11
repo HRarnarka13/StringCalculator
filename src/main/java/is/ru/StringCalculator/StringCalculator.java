@@ -4,6 +4,10 @@ public class StringCalculator {
 	
 	public static int add(String text) {
 		if(text.isEmpty()) { return 0; }
+		else if (text.contains(",")) {
+			String[] s = text.split(",");
+			return Integer.parseInt(s[0]) + Integer.parseInt(s[1]); 
+		}
 		else {
 			return 1;
 		}
