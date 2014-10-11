@@ -19,7 +19,7 @@ public class StringCalculatorTest {
 	}
 	@Test
 	public void testTwoNumbers() {
-		assertEquals(3, StringCalculator.add("1,3"));
+		assertEquals(3, StringCalculator.add("1,2"));
 	}
 
 }
