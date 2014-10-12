@@ -73,8 +73,13 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void testManyDelimiter() {
+	public void testManyDelimiters() {
 		assertEquals(6, StringCalculator.add("//[*][%]\n1*2%3"));
+	}
+
+	@Test
+	public void testManyLongDelimiters() {
+		assertEquals(6, StringCalculator.add("//[***][%%%]\n1***2%%%3"));
 	}
 	
 
