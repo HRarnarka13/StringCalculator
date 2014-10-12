@@ -4,21 +4,6 @@ public class StringCalculator {
 	
 	public static int add(String text) {
 		if(text.isEmpty()) { return 0; }
-		else if (HasSpecificDelimiter(text)) {
-			int indexOfNewLine = text.indexOf("\n");
-			int indexOfComma = text.indexOf(",");
-			if (indexOfNewLine == -1) {
-				String delimiter = text.substring(2,indexOfComma);
-				String numbers = text.substring(indexOfComma + 1);
-				return sum(splitStringBy(delimiter,numbers));
-			}
-			else {
-				String delimiter = text.substring(2,indexOfNewLine);
-				String numbers = text.substring(indexOfNewLine + 1);
-				return sum(splitStringBy(delimiter,numbers));
-			}
-			
-		}
 		else if (containsDelimiter(text)) {
 			return sum(splitString(text));
 		}
@@ -26,7 +11,8 @@ public class StringCalculator {
 	}
 
 	private static int toInt(String s){
-		return Integer.parseInt(s);
+		int number = Integer.parseInt(s);
+		return number;
 	}
 
 	private static Boolean containsDelimiter(String s){
@@ -38,7 +24,22 @@ public class StringCalculator {
 	}
 
 	private static String[] splitString(String s) {
-		return s.split("[,\n]");
+		String delimiter = "[" + ",\n" + "]";
+		if (HasSpecificDelimiter(s)){
+			int indexOfNewLine = s.indexOf("\n");
+			int indexOfComma = s.indexOf(",");
+			if (indexOfNewLine == -1) {
+				delimiter = s.substring(2,indexOfComma);
+				String numbers = s.substring(indexOfComma + 1);
+				return numbers.split(delimiter);
+			}
+			else {
+				delimiter = s.substring(2,indexOfNewLine);
+				String numbers = s.substring(indexOfNewLine + 1);
+				return numbers.split(delimiter);
+			}
+		}
+		return s.split(delimiter);
 	}
 
 	private static int sum(String[] numbers) {
