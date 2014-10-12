@@ -1,0 +1,4 @@
+#!/bin/bash
+git add src/main/java/is/ru/StringCalculator/StringCalculator.java
+git add classes/is/ru/StringCalculator/StringCalculator.class 
+
