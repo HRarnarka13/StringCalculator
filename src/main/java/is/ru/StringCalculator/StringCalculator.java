@@ -35,9 +35,27 @@ public class StringCalculator {
 				return numbers.split(delimiter);
 			}
 			else {
-				delimiter = "[" + s.substring(3, indexOfNewLine - 1) + "]+";
+				int numberOfDelimeter = NumberOfOccurences(s, "[");
 				String numbers = s.substring(indexOfNewLine + 1);
-				return numbers.split(delimiter);	
+				if (numberOfDelimeter < 2) {
+					delimiter = "[" + s.substring(3, indexOfNewLine - 1) + "]+";
+					return numbers.split(delimiter);	
+				}
+				else {
+					int i = 0;
+					delimiter = "";
+					String temp = s.substring(2, indexOfNewLine - 1);
+					try {
+						while(temp.charAt(i) == '['){
+							delimiter += temp.charAt(i + 1);
+							i += 3;
+						}
+					} catch(StringIndexOutOfBoundsException e) {
+						delimiter = "["+ delimiter + "]";
+						return numbers.split(delimiter);
+					}
+
+				}
 			}
 			
 		}
@@ -96,4 +114,14 @@ public class StringCalculator {
 	private static Boolean HasSpecificDelimiter(String numbers){
             return numbers.startsWith("//");
     }
+
+    private static int NumberOfOccurences(String s, String n){
+		int counter = 0; 
+		for(int i = 0; i < s.length(); i++) {
+			if(s.substring(i, i+1).equals(n)){
+				counter++;
+			}
+		}
+		return counter;
+	}
 }
