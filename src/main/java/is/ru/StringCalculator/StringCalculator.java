@@ -42,22 +42,19 @@ public class StringCalculator {
 					return numbers.split(delimiter);	
 				}
 				else {
-					int i = 0;
 					delimiter = "";
-					String temp = s.substring(2, indexOfNewLine - 1);
+					String temp = s.substring(2, indexOfNewLine);
 					try {
-						while(temp.charAt(i) == '['){
-							delimiter += temp.charAt(i + 1);
-							i += 3;
+						while(temp.charAt(0) == '['){
+							delimiter += temp.substring(1, temp.indexOf("]"));
+							temp = temp.substring(temp.indexOf("]") + 1);
 						}
 					} catch(StringIndexOutOfBoundsException e) {
-						delimiter = "["+ delimiter + "]";
+						delimiter = "["+ delimiter + "]+";
 						return numbers.split(delimiter);
 					}
-
 				}
 			}
-			
 		}
 		return s.split(delimiter);
 	}
