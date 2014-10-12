@@ -12,7 +12,9 @@ public class StringCalculator {
 	}
 
 	private static int ToInt(String s){
-		return Integer.parseInt(s);
+		int number = Integer.parseInt(s);
+		if (NumberToBig(number)) { return 0; }
+		return number;
 	}
 
 	private static String ToString(int i) {
@@ -81,6 +83,10 @@ public class StringCalculator {
 				exceptionMessage = exceptionMessage.substring(0, exceptionMessage.length() - 1); 
 			}
 			throw new IllegalArgumentException(exceptionMessage);
+	}
+
+	private static Boolean NumberToBig(int number){
+		return number > 1000;
 	}
 
 	private static String AppendToString(String prefix, String suffix) {
