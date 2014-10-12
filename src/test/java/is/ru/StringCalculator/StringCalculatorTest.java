@@ -62,6 +62,10 @@ public class StringCalculatorTest {
     	StringCalculator.add("2,-4,3,-5");
 	}
 	
+	@Test
+	public void testBigNumbers() {
+		assertEquals(2, StringCalculator.add("1001,2"));
+	}
 
 
 
