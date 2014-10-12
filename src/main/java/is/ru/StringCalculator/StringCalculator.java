@@ -29,17 +29,17 @@ public class StringCalculator {
 		String delimiter = "[" + ",\n" + "]";
 		if (HasSpecificDelimiter(s)){
 			int indexOfNewLine = s.indexOf("\n");
-			int indexOfComma = s.indexOf(",");
-			if (indexOfNewLine == -1) {
-				delimiter = s.substring(2,indexOfComma);
-				String numbers = s.substring(indexOfComma + 1);
-				return numbers.split(delimiter);
-			}
-			else {
-				delimiter = s.substring(2,indexOfNewLine);
+			if (indexOfNewLine == 3) {
+				delimiter = "[" + s.substring(2, indexOfNewLine) + "]";
 				String numbers = s.substring(indexOfNewLine + 1);
 				return numbers.split(delimiter);
 			}
+			else {
+				delimiter = "[" + s.substring(3, indexOfNewLine - 1) + "]+";
+				String numbers = s.substring(indexOfNewLine + 1);
+				return numbers.split(delimiter);	
+			}
+			
 		}
 		return s.split(delimiter);
 	}
