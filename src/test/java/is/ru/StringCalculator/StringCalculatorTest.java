@@ -33,7 +33,7 @@ public class StringCalculatorTest {
 	
 	@Test
 	public void testDelimiter2() {
-		assertEquals(3, StringCalculator.add("//@,1@2"));
+		assertEquals(3, StringCalculator.add("//#,1#2"));
 	}
 
 	@Test(expected = Exception.class)
