@@ -1,7 +1,12 @@
 package is.ru.StringCalculator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 public class StringCalculatorTest {
 	
@@ -36,10 +41,27 @@ public class StringCalculatorTest {
 		assertEquals(3, StringCalculator.add("//#,1#2"));
 	}
 
-	@Test(expected = Exception.class)
-	public void testNegativeNumber() {
-		StringCalculator.add("-1,2");
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+ 
+	@Test
+	public void throwsExceptionWhenNegativeNumber() {
+    // arrange
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage(equalTo("Negatives not allowed: -1"));
+    	// act
+    	StringCalculator.add("-1,2");
 	}
+
+	@Test
+	public void throwsExceptionWhenNegativeNumbers() {
+    // arrange
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage(equalTo("Negatives not allowed: -4,-5"));
+    	// act
+    	StringCalculator.add("2,-4,3,-5");
+	}
+	
 
 
 
