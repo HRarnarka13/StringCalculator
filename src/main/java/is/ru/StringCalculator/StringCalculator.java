@@ -15,6 +15,10 @@ public class StringCalculator {
 		return Integer.parseInt(s);
 	}
 
+	private static String ToString(int i) {
+		return Integer.toString(i);
+	}
+
 	private static Boolean ContainsDelimiter(String s){
 		return (s.contains(",") || s.contains("\n"));
 	}
@@ -49,28 +53,38 @@ public class StringCalculator {
 
 	private static void CheckNegavite(String[] numbers) {
 		int i = 0;
-		Boolean negavite = false;
+		Boolean containsNegavite = false;
 		ArrayList<Integer> negaviteNumbers = new ArrayList<Integer>();
 		for (String n : numbers) {
 			int num = ToInt(n);
 			if(num < 0) {
-				negavite = true;
+				containsNegavite = true;
 				negaviteNumbers.add(num);
 			}
 		}
-		if(negavite) {
-			String exceptionMessage = "Negatives not allowed: ";
+		if(containsNegavite) {
+			ThrowException(negaviteNumbers);
+		}
+	}
+
+	private static void ThrowException(ArrayList<Integer> negaviteNumbers) {
+		String exceptionMessage = "Negatives not allowed: ";
 			if(negaviteNumbers.size() == 1) {
-				exceptionMessage += Integer.toString(negaviteNumbers.get(0));
+				exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(0)));
 			}
 			else {
 				for(int j = 0; j < negaviteNumbers.size(); j++) {
-					exceptionMessage += (Integer.toString(negaviteNumbers.get(j)) + ",");
+					exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(j)));
+					exceptionMessage = AppendToString(exceptionMessage, ",");
 				}
-				exceptionMessage = exceptionMessage.substring(0, exceptionMessage.length() - 1);
+				// cut of the comma in the end of the string
+				exceptionMessage = exceptionMessage.substring(0, exceptionMessage.length() - 1); 
 			}
 			throw new IllegalArgumentException(exceptionMessage);
-		}
+	}
+
+	private static String AppendToString(String prefix, String suffix) {
+		return prefix + suffix;
 	}
 
 	private static Boolean HasSpecificDelimiter(String numbers){
