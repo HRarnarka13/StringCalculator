@@ -89,18 +89,18 @@ public class StringCalculator {
 
 	private static void ThrowException(ArrayList<Integer> negaviteNumbers) {
 		String exceptionMessage = "Negatives not allowed: ";
-			if(negaviteNumbers.size() == 1) {
-				exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(0)));
+		if(negaviteNumbers.size() == 1) {
+			exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(0)));
+		}
+		else {
+			for(int j = 0; j < negaviteNumbers.size(); j++) {
+				exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(j)));
+				exceptionMessage = AppendToString(exceptionMessage, ",");
 			}
-			else {
-				for(int j = 0; j < negaviteNumbers.size(); j++) {
-					exceptionMessage = AppendToString(exceptionMessage, ToString(negaviteNumbers.get(j)));
-					exceptionMessage = AppendToString(exceptionMessage, ",");
-				}
-				// cut of the comma in the end of the string
-				exceptionMessage = exceptionMessage.substring(0, exceptionMessage.length() - 1); 
-			}
-			throw new IllegalArgumentException(exceptionMessage);
+			// cut of the comma in the end of the string
+			exceptionMessage = exceptionMessage.substring(0, exceptionMessage.length() - 1); 
+		}
+		throw new IllegalArgumentException(exceptionMessage);
 	}
 
 	private static Boolean NumberToBig(int number){
