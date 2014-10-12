@@ -19,10 +19,6 @@ public class StringCalculator {
 		return (s.contains(",") || s.contains("\n"));
 	}
 
-	private static String[] splitStringBy(String delimiter, String numbers){
-		return numbers.split(delimiter);
-	}
-
 	private static String[] splitString(String s) {
 		String delimiter = "[" + ",\n" + "]";
 		if (HasSpecificDelimiter(s)){
