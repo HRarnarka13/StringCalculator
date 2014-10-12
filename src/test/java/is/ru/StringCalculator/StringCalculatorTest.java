@@ -33,12 +33,12 @@ public class StringCalculatorTest {
 	
 	@Test
 	public void testDelimiter() {
-		assertEquals(3, StringCalculator.add("//;\n1;2"));
+		assertEquals(3, StringCalculator.add("//*\n1*2"));
 	}
 	
 	@Test
 	public void testDelimiter2() {
-		assertEquals(3, StringCalculator.add("//#,1#2"));
+		assertEquals(3, StringCalculator.add("//#\n1#2"));
 	}
 
 	@Rule
@@ -67,6 +67,12 @@ public class StringCalculatorTest {
 		assertEquals(2, StringCalculator.add("1001,2"));
 	}
 
+	@Test
+	public void testLongDelimiter() {
+		assertEquals(6, StringCalculator.add("//[***]\n1***2***3"));
+	}
+
+	
 
 
 }
